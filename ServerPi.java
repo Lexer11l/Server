@@ -19,7 +19,7 @@ import com.pi4j.io.gpio.*;
 
 
 public class ServerPi {
-    final GpioController gpio = GpioFactory.getInstance();
+   final GpioController gpio = GpioFactory.getInstance();
     final GpioPinDigitalOutput LED = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, PinState.LOW);
     final GpioPinDigitalInput button = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
     private List<Connection> connections =
@@ -88,15 +88,15 @@ public class ServerPi {
                     // System.out.println(str);
                     switch (str){
                         case "light":{
-                            LED.high();
+                           LED.high();
                             System.out.println("light");
-
+                            out.println("true");
                             break;
                         }
                         case "dark":{
                             LED.low();
                             System.out.println("dark");
-
+                            out.println("false");
                             break;
                         }
                         case "open":{
@@ -110,11 +110,10 @@ public class ServerPi {
                             break;
                         }
                         case "state":{
-                            //      iter.next().out.println(button.isHigh()+"");
+                            out.println(button.getState().isHigh()+"");
                             break;
                         }
                         default: {
-
 
                         }}}
 
